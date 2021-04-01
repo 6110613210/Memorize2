@@ -12,6 +12,7 @@ struct MemoryGame<CardContent: Equatable> {
     private(set) var Move: Int
     var emptyIndex = 0
     var WinStatus = ""
+    var count = 0
         
     init(numberOfPairsOfCard: Int, cardContentFactory: (Int) -> CardContent) {
         Move = 0
@@ -67,12 +68,15 @@ struct MemoryGame<CardContent: Equatable> {
         
         for i in 0..<cards.count{
             if cards[i].id == cards[i].indexCard{
+                count+=1
             }
             else{
                 break
             }
         }
-        WinStatus = "Win"
+        if count == 16 {
+            WinStatus = "Win"
+        }
     }
     
     struct Card: Identifiable {
